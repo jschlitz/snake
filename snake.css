@@ -11,99 +11,54 @@ p{
 }
 
 
+.board {
+  display:  flex;
+  flex-wrap: nowrap;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:flex-start;
+  align-content: flex-start;
+  padding: 3px;
+  margin-right: 10px;
+}
 
-.container {
+.row {
+  flex: 0 0 1;
   display:  flex;
   flex-wrap: nowrap;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items:flex-start;
-  align-content: space-around;
-  padding: 3px;
+  align-content: flex-start;
 }
 
-.subcontainer {
-  display:  flex;
-  width: 200px;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items:flex-start;
-  align-content: space-around;
-  padding: 3px;
-  margin-right: 10px;
-}
-
-
-.source {
-  flex: 0 0 1;
-  width:  180px;
-  height: 120px;
-  display:  flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items:center;
-  align-content: space-around;
-  border: 2px solid #666666 ;
-  border-radius: 6px;
-  background-color: #ccddcc;
-  padding: 3px;
-  font-size: 3em;
-  color: #666666;
-}
-
-.big-text {
-  font-size: 3em;
-  color: #666666;
-}
-
-.arrow {
-  flex: 0 0 1;
-	width: 0;
-  align-self: center;
-	height: 0;
-	border-top: 20px solid transparent;
-	border-left: 50px solid gray;
-	border-bottom: 20px solid transparent;
-  margin-bottom: 2em;
-  margin-right: 10px;
-}
-
-.well {
+.food {
   width:  12px;
   height: 12px;
-  border: 1px solid #666666 ;
+  border: 1px solid #dd9911;
   flex: 0 0 12px;
   border-radius: 12px;
-  background-color: #eeeeee;
+  background-color: #eeaa11;
   margin: 1px;
 }
 
-.plate2 {
-  flex: 0 0 1;
-  margin: 10;
-  display:  flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items:stretch;
-  align-content: space-around;
-  border: 2px solid #666666 ;
-  border-radius: 6px;
-  background-color: #dddddd;
-  padding: 3px;
+.snake {
+  width:  12px;
+  height: 12px;
+  border: 1px solid #008833;
+  flex: 0 0 12px;
+  border-radius: 1px;
+  background-color: #119944;
+  margin: 1px;
 }
 
-.column {
-  flex: 0 0 1;
-  display:  flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items:flex-start;
-  align-content: space-around;
-  background-color: #dddddd;
+.empty {
+  width:  12px;
+  height: 12px;
+  border: 1px solid #dddddd;
+  flex: 0 0 12px;
+  background-color: #eeeeee;
+  margin: 1px;
 }
 
 #main {
@@ -116,8 +71,6 @@ p{
   align-content: space-around;
   background-color: #ffffff;
 }
-
-
 
 /*some distinct colors*/
 .c0 { background-color: #3F8677}
