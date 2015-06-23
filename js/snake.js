@@ -1,9 +1,16 @@
 //Add a snake segment onto the front. Does no checking for walls, food, etc.
-var insertSegment = function(x,y, boardInfo, snakeInfo) {
-  boardInfo[x][y].div.removeClass();
-  boardInfo[x][y].div.addClass('snake');
-  snakeInfo.unshift([x,y]);
+var insertSegment = function(coords, boardInfo, snakeInfo) {
+  boardInfo[coords[0]][coords[1]].div.removeClass();
+  boardInfo[coords[0]][coords[1]].div.addClass('snake');
+  snakeInfo.unshift(coords);
 };
+
+var removeLastSegment = function(boardInfo, snakeInfo) {
+  var coords = snakeInfo.pop();
+  boardInfo[coords[0]][coords[1]].div.removeClass();
+  boardInfo[coords[0]][coords[1]].div.addClass('empty');
+};
+
 
 var randInt = function (x){
   return Math.floor(Math.random()*x);
@@ -35,13 +42,12 @@ var newCoords = function(direction, coords) {
   };
 };
 
-var willDie = function(direction, boardInfo, snakeInfo){
-  var nc = newCoords(direction, snakeInfo[0]);
-  if (nc[0]<0 || nc[1]<0 || nc[0]>=40 || nc[1]>=40){
+var willDie = function(boardInfo, coords){
+  if (coords[0]<0 || coords[1]<0 || coords[0]>=40 || coords[1]>=40){
     return true;
   };
   //self collision
-  if (boardInfo[nc[0]][nc[1]].div.hasClass('snake')){
+  if (boardInfo[coords[0]][coords[1]].div.hasClass('snake')){
     return true;
   };
 
@@ -61,11 +67,23 @@ $(document).ready(function(){
   main.append(boardDiv);
   var boardInfo = []
   var snakeInfo = [];
-  var direction = 'd';
+  var direction = 's';
+
+  var doLoop = function(){
+    var nc = newCoords(direction, snakeInfo[0]);
+    if(willDie(boardInfo, nc)){
+      alert("He's dead, Jim.");
+      return;
+    };
+    insertSegment(nc, boardInfo, snakeInfo);
+    removeLastSegment(boardInfo, snakeInfo);
+
+    setTimeout(doLoop, 500);
+  };
 
   //initial setup
   for (var i = 0; i < 40; i++) {
-    var r = makeDiv("row");
+    var r = makeDiv("column");
     boardDiv.append(r);
     boardInfo[i] = [];
     for (var j = 0; j < 40; j++) {
@@ -74,18 +92,12 @@ $(document).ready(function(){
       r.append(tmp.div);
     };
   };
-  insertSegment(20,20,boardInfo, snakeInfo);
+  insertSegment([20,20],boardInfo, snakeInfo);
   addFood(16, boardInfo);
 
   //main event loop
-  while(1){
-    if(willDie(direction, boardInfo, snakeInfo)){
-      //bah, we can't do a sleep wait.
-      alert("He's dead, Jim.");
-      break;
-    }
-    break;
-  }
+
+  setTimeout(doLoop, 500);
 });
 
 

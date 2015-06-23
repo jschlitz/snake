@@ -14,7 +14,7 @@ p{
 .board {
   display:  flex;
   flex-wrap: nowrap;
-  flex-direction:column;
+  flex-direction:row;
   justify-content:flex-start;
   align-items:flex-start;
   align-content: flex-start;
@@ -27,6 +27,16 @@ p{
   display:  flex;
   flex-wrap: nowrap;
   flex-direction: row;
+  justify-content: flex-start;
+  align-items:flex-start;
+  align-content: flex-start;
+}
+
+.row {
+  flex: 0 0 1;
+  display:  flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
   justify-content: flex-start;
   align-items:flex-start;
   align-content: flex-start;
